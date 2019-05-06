@@ -1,14 +1,9 @@
 import { Hero } from './hero';
 
 export const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];
+  { id: 1, name: 'Dr. Ahmed Naseer',specialization:'Pediatrician' , professionalStatement:"One of the best available in twon" },
+  { id: 2, name: 'Dr. Imama Akbar',specialization:'Psicologist' , professionalStatement:"Specialised in her field" },
+  { id: 3, name: 'Dr. Asad Ullah',specialization:'Pediatrician' , professionalStatement:"Graduate from King Edward, Known for his expertise" },
+  { id: 4, name: 'Dr. Kainat Saad',specialization:'Pediatrician' , professionalStatement:"Child Specialist" },
+  { id: 5, name: 'Dr.Masood Sohail',specialization:'Medicine Specialist' , professionalStatement:"Best available medicine specialist" },
+  { id: 6, name: 'Dr. Asad Ullah',specialization:'Pediatrician' , professionalStatement:"Graduate from King Edward, Known for his expertise" }];

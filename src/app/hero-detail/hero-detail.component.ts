@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { Hero }         from '../hero';
 import { HeroService }  from '../hero.service';
+import {HEROES} from '../mock-heroes';
 
 @Component({
   selector: 'app-hero-detail',
@@ -11,7 +12,8 @@ import { HeroService }  from '../hero.service';
   styleUrls: [ './hero-detail.component.css' ]
 })
 export class HeroDetailComponent implements OnInit {
-  @Input() hero: Hero;
+  @Input() doctor: Hero;
+  heroes:Hero [];
 
   constructor(
     private route: ActivatedRoute,
@@ -25,8 +27,21 @@ export class HeroDetailComponent implements OnInit {
 
   getHero(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+    
+    this.heroes= HEROES;
+
+
+      for (var i=0; i < this.heroes.length; i++) {
+        if (this.heroes[i].id === id) {
+            this.doctor=this.heroes[i];
+        }
+      }
+
+
+    // this.heroService.getHero(id)
+    //   .subscribe(hero => this.hero = hero);
+ 
+ 
   }
 
   goBack(): void {
@@ -34,7 +49,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
  save(): void {
-    this.heroService.updateHero(this.hero)
+    this.heroService.updateHero(this.doctor)
       .subscribe(() => this.goBack());
   }
 }

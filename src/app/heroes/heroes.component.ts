@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router,ActivatedRoute } from '@angular/router';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import 'rxjs/add/operator/filter';
+import {HEROES} from '../mock-heroes';
 
 @Component({
   selector: 'app-heroes',
@@ -10,16 +12,52 @@ import { HeroService } from '../hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
+  searchQ:string="";
 
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService, private route : ActivatedRoute) { }
 
   ngOnInit() {
-    this.getHeroes();
+    this.route.queryParams
+    .filter(params => params.searchQ)
+    .subscribe(params => {
+      this.searchQ = params.searchQ;
+      this.getHeroes();
+    })
+
   }
 
   getHeroes(): void {
-    this.heroService.getHeroes()
-    .subscribe(heroes => this.heroes = heroes);
+    this.heroes= HEROES;
+
+
+   this.heroes=this.heroes.filter(hero=>{
+      return hero.name.toLowerCase().includes(this.searchQ.toLowerCase()) || hero.specialization.toLowerCase().includes(this.searchQ.toLowerCase()) ;
+      
+      // || hero.address.toLowerCase().includes(this.searchQ.toLowerCase()) || hero.area.toLowerCase().includes(this.searchQ.toLowerCase()) || hero.specialization.toLowerCase().includes(this.searchQ.toLowerCase())
+
+    })
+
+    
+      // for (var i=0; i < this.heroes.length; i++) {
+      //   if (this.heroes[i].name.toLowerCase().includes(this.searchQ)) {
+      //       this.doctor=this.heroes[i];
+      //   }
+      // }
+
+    // { id: 13, name: 'Bombasto' },
+    // { id: 14, name: 'Celeritas' },
+    // { id: 15, name: 'Magneta' },
+    // { id: 16, name: 'RubberMan' },
+    // { id: 17, name: 'Dynama' },
+    // { id: 18, name: 'Dr IQ' },
+    // { id: 19, name: 'Magma' },
+    // { id: 20, name: 'Tornado' }
+
+
+    // this.heroService.getHeroes()
+    // .subscribe(heroes => this.heroes = heroes);
+  
+  
   }
 
   add(name: string): void {

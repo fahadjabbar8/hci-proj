@@ -29,6 +29,7 @@
     "angular-in-memory-web-api": "github:brandonroberts/in-memory-web-api-bazel#50a34d8",
     "core-js": "^2.5.4",
     "rxjs": "^6.5.1",
+    "rxjs-compat": "^6.5.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
